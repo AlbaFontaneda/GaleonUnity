@@ -43,7 +43,7 @@ public class ShowGameMenu : MonoBehaviour
         InputMgr input = GameMgr.GetInstance().GetServer<InputMgr>();
         if (input != null)
         {
-            Debug.LogError("desregistramos");
+            Debug.Log("desregistramos escena");
             input.UnRegisterReturn(OnReturnPressed);
         }
 

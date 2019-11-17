@@ -41,7 +41,16 @@ public class EnemyGenerator : MonoBehaviour
 			position += m_offset * radious;
             //Par instanciarlo usamos el SpawnerMgr. Si lo usamos podremos utilizar el pool de objetos precargados
             //lo que nos ayudara a reducir la fragmentacio nde memoria.
+           
             ///TODO 1 instanciar usando el spawnerMGr.
+            SpawnerMgr spawnerMgr = GameMgr.GetInstance().GetSpawnerMgr();
+
+            //Cogemos el enemigo
+            GameObject enemy = (GameObject)_prefabs.GetValue(enemyIdx);
+
+            //Creamos el nuevo sin desperdiciar la cache
+            spawnerMgr.CreateNewGameObject(enemy, position, this.transform.rotation);
+
         }
     }
 	

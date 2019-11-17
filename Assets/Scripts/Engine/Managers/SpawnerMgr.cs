@@ -15,7 +15,7 @@ public class SpawnerMgr
         Debug.Assert(m_sceneMgr != null, "Error: el Scene mgr debe ser distinto de null");
         //Queremos que el manager de escena nos avise cuando haya temrinado la escena para poder destruir nuestra cache de recursos.
         //TODO 1 Registarnos al calback de fin de escena con OnDestroyCurrentScene.
-        sceneMgr.RegisterDestroyScene(OnDestroyCurrentScene);
+        m_sceneMgr.RegisterDestroyScene(OnDestroyCurrentScene);
     }
 	
 	protected void OnDestroyCurrentScene()
@@ -119,13 +119,17 @@ public class SpawnerMgr
 			{
 				GameObject newObject = Object.Instantiate(cd.prefab,Vector3.zero,Quaternion.identity) as GameObject;
 				newObject.name = cd.prefab.name + "@" + m_staticIDs++;
+                
                 //TODO 5 desactivamos el nuevo objeto, lo metemos en la lista y le cambiamos el parent al root de la escena
                 //registramos los nuevos prebuild objects...
                 newObject.SetActive(false);
+
                 list.Add(newObject);
 
                 Scene scene = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentScene;
                 newObject.transform.parent = scene.GetRootGameObjects()[0].transform;
+
+
 
                 //GameObject root = GameMgr.GetInstance().GetServer<SceneMgr>().GetCurrentSceneRoot();
                 //newObject.transform.parent = root.transform;

@@ -175,7 +175,16 @@ public class AttackComponent : MonoBehaviour
         SendMessage("OnChangeWeapon", m_activeWeapon,SendMessageOptions.DontRequireReceiver);
 
         // TODO 1 : Registramos RegisterChangeWeapon en el input controller del inputmgr con el event ChangeWeapon
+        //Cogemos el inputmgr
+        InputMgr inputMgr = GameMgr.GetInstance().GetServer<InputMgr>();
+        Debug.Assert(inputMgr != null, "Error: el componente InputMgr no existe");
 
+        //Cogemos el controlador del pointAndClick
+        PointAndClickInput m_pointInput = inputMgr.GetInput<PointAndClickInput>();
+        Debug.Assert(m_pointInput != null, "Error: el componente PointAndClickInput no existe");
+
+        //Registramos ChangeeWeapon en el m_pointController
+        m_pointInput.RegisterChangeWeapon(this.ChangeWeapon);
 
 
         foreach (TWeapons wp in m_weapons)
