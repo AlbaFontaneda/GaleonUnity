@@ -138,13 +138,14 @@ public class GameMgr
             //InputServer: servidor de entrada.
 
             //SceneMgr: Gestiona la carga de escenas... 
-            //TODO (SceneMgr)  AddServer<SceneMgr>();
+            //TODO (SceneMgr)  
+            AddServer<SceneMgr>();
             SceneMgr smAux = m_servers.GetComponent<SceneMgr>();
             m_spawnerMgr = new SpawnerMgr(smAux);
 
 
             //TODO (InputMgr)
-            AddServer<SceneMgr>();
+            //AddServer<SceneMgr>();
             InputMgr inputMgr = AddServer<InputMgr>();
             inputMgr.Configure(0, true);
 
