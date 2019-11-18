@@ -58,6 +58,19 @@ public class SceneMgr : MonoBehaviour
         }
     }
 
+    public string CurrentSceneName
+    {
+        get { return m_stackScenes.Peek().name; }
+    }
+
+    public Scene GetCurrentScene
+    {
+        get
+        {
+            return SceneManager.GetSceneByName(CurrentSceneName);
+        }
+    }
+
     public bool IsLoadingFinish
     {
         get { return !m_justAsyncLoaderMainScene; }
